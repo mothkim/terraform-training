@@ -1,0 +1,48 @@
+pipeline {
+    agent {
+        label 'slave'
+    }
+
+    stages {
+        stage('Check Terraform Version') {
+            steps {
+                sh'''
+                    terraform version
+                '''
+            }
+        }
+        
+        stage('Terraform Apply'){
+            steps {
+                sh'''
+                    cd /Users/deen/Desktop/develop/ztest/terraform-training/docker/lesson-1-sample
+                    ls -lrt
+                    terraform init
+                    terraform validate
+                    terraform apply --auto-approve
+                    sleep 30
+                '''
+            }
+        }
+        
+        stage('Check Docker Container'){
+            steps {
+                sh'''
+                    docker ps -a
+                    sleep 30
+                '''
+            }
+        }
+        
+        stage('Terraform Destroy'){
+            steps {
+                sh'''
+                    sleep 30
+                    cd /Users/deen/Desktop/develop/ztest/terraform-training/docker/lesson-1-sample
+                    ls -lrt
+                    terraform destroy --auto-approve
+                '''
+            }
+        }
+    }
+}
