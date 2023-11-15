@@ -23,5 +23,5 @@ resource "docker_container" "my_container-2" {
 }
 
 resource "docker_image" "my_image-2" {
-  name = "bitnami/nginx:latest"
+  name = "ubuntu/nginx:latest"
 }

@@ -34,7 +34,7 @@ resource "docker_container" "my_container" {
 
 # Find the latest Ubuntu precise image.
 resource "docker_image" "my_image" {
-  name = "bitnami/nginx:latest"
+  name = "ubuntu/nginx:latest"
 }
 
 variable "container_name" {
